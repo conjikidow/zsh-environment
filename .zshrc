@@ -89,7 +89,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 zstyle ':completion:*' auto-description 'specify: %d'                                                  # Specifies the auto-description format for completions
-zstyle ':completion:*' completer _expand _complete _correct _approximate                               # Specifies the completers for completions
+zstyle ':completion:*' completer _oldlist _expand _complete _correct _approximate                      # Specifies the completers for completions
 zstyle ':completion:*' group-name ''                                                                   # Sets the group name for completions to empty
 zstyle ':completion:*' menu select=2                                                                   # Sets the menu style for completions
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s             # Sets the list prompt format for completions
@@ -100,6 +100,11 @@ zstyle ':completion:*' use-compctl false                                        
 zstyle ':completion:*' verbose true                                                                    # Enables verbose mode for completions
 zstyle ':completion:*' ignore-parents parent pwd ..                                                    # Ignores certain parents for completions
 zstyle ':completion:*' insert-tab false                                                                # Disables insert-tab behavior for completions
+zstyle ':completion:*:corrections' format '%F{green}%d (errors: %e)%f'                                 # Sets the format for corrections in completions
+zstyle ':completion:*:descriptions' format '%B%F{white}--- %d ---%f%b'                                 # Sets the format for descriptions in completions
+zstyle ':completion:*:messages' format '%F{yellow}%d'                                                  # Sets the format for messages in completions
+zstyle ':completion:*:options' description 'yes'                                                       # Sets the description option for completions
+zstyle ':completion:*:warnings' format '%F{red}No matches for: %F{white}%d%b'                          # Sets the format for warnings in completions
 zstyle ':completion:*:cd:*' ignore-parents parent pwd                                                  # Ignores certain parents for cd completions
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=00;31'                       # Sets the list colors for kill process completions
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'                        # Specifies the command for kill completions
