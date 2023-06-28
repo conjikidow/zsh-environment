@@ -128,7 +128,7 @@ autoload zmv               # Loads the zmv module for advanced file renaming
 alias mmv='noglob zmv -W'  # Defines an alias "mmv" that uses zmv with globbing disabled and extended mode for file renaming
 
 
-# C++
+# C/C++
 
 alias g++="/usr/bin/g++-11 -std=c++20 -Wall -Wextra -Wconversion -pedantic -fsanitize=undefined"
 alias gcc="/usr/bin/gcc-11 -std=c99 -Wall -Wextra -fsanitize=undefined"
@@ -147,7 +147,7 @@ function cf() { # Format .cpp etc. files
     done
 }
 
-alias make='make -j8 -l8'
+alias make='make -j$[$(grep cpu.cores /proc/cpuinfo | sort -u | sed "s/[^0-9]//g") + 1]'
 
 
 # Python
