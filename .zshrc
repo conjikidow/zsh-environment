@@ -80,6 +80,8 @@ source ${ZDOTDIR}/.git_prompt.sh
 export PROMPT='zsh:%F{green}%~%f %F{magenta}$(__git_ps1 "%s" )%f$ '
 export RPROMPT='%F{yellow}%w %T%f'
 
+source $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 export fpath=($fpath $ZDOTDIR/completion)  # Adds the completion directory to the fpath
 autoload -Uz compinit                      # Loads the compinit module
 compinit -u                                # Initializes zsh completion
