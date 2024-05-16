@@ -159,39 +159,11 @@ alias make='make -j$[$(grep cpu.cores /proc/cpuinfo | sort -u | sed "s/[^0-9]//g
 
 # Python
 
-if command -v pyenv 1> /dev/null 2>&1; then
-    eval "$(pyenv init -)"  # Initializes pyenv
-fi
+source "$HOME/.rye/env"
 
 export PYTHONSTARTUP=${ENVDIR}/python/pythonrc.py
 alias python='python3'
-alias pip='pip3'
-alias pip_upgrade="python3 -m pip install --upgrade pip && pip3 list -o | tail -n +3 | awk '{ print $1 }' | xargs pip3 install -U"  # Upgrades pip and installs available package updates
 alias -s py=python3                                                                                                                 # Associates the .py file extension with the 'python3' command
-
-function pf() { # Format .py file
-    if [ $# = 0 ]; then
-        echo $'pf: \e[1;31merror:\e[m\n  usage: pf [option] [python files]'  # Displays an error message if no arguments are provided
-        return 0
-    fi
-
-    do_sort=0
-    if [ $1 = "-h" ] || [ $1 = "--help" ]; then
-        echo $'pf: format python files\n  usage: pf [option] [python files]\n    -i, --isort: also sort imports\n    -h, --help: show this help'  # Displays the usage information and options
-        echo '  version:\n    '$(autopep8 --version)'\n    '$(yapf --version)
-        return 0
-    elif [ $1 = "-i" ] || [ $1 = "--isort" ]; then
-        do_sort=1
-        shift
-    fi
-
-    autopep8 -i "$@"  # Formats the Python files using autopep8
-    yapf -i "$@"      # Formats the Python files using yapf
-
-    if [ $do_sort = 1 ]; then
-        isort "$@"  # Sorts imports in the Python files using isort
-    fi
-}
 
 
 # Go

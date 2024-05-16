@@ -22,9 +22,3 @@ export ENVDIR="${HOME}/environment"
 
 export ZDOTDIR="${ENVDIR}/zsh"
 export HISTFILE="${ZDOTDIR}/.zsh_history"
-
-
-# Python
-
-export PYENV_ROOT="${ENVDIR}/python/pyenv"
-export PATH="${PYENV_ROOT}/bin:${PATH}"
