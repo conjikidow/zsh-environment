@@ -38,10 +38,6 @@ alias ll='ls -lhF'  # Lists files using a long listing format with human-readabl
 alias la='ls -A'    # Lists almost all files, excluding . and ..
 alias lr='ls -R'    # Lists files recursively, including subdirectories
 
-function cd() { # Changes the directory and displays the current directory along with its files and directories
-    builtin cd "$@" && ls
-}
-
 if [[ -x $(which colordiff) ]]; then
     alias diff='colordiff -u'  # Uses colordiff to display diff with unified format
 else
@@ -142,18 +138,6 @@ alias gcc="/usr/bin/gcc-11 -std=c99 -Wall -Wextra -fsanitize=undefined"
 
 export CPATH="${CPATH}:/usr/include/eigen3"
 
-function cf() { # Format .cpp etc. files
-    extensions=("c" "h" "cpp" "hpp" "ipp" "ino" "js")  # Array of file extensions to format
-    for file in "$@"; do
-        for ext in "${extensions[@]}"; do
-            if [ "${file##*.}" = "$ext" ]; then
-                clang-format -i "$file"  # Apply clang-format to format the file
-                echo "Formatted: $file"
-            fi
-        done
-    done
-}
-
 alias make='make -j$[$(grep cpu.cores /proc/cpuinfo | sort -u | sed "s/[^0-9]//g") + 1]'
 
 
@@ -168,7 +152,7 @@ alias -s py=python3                                                             
 
 # Go
 
-export GOPATH=${HOME}/.go
+export GOPATH="${HOME}/.go"
 export PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
 
 
@@ -178,11 +162,11 @@ export LATEXDIR=${ENVDIR}/latex
 export TEXMFHOME=${LATEXDIR}/texmf
 
 
-# QT
-
-export QT_QPA_PLATFORM=xcb
-
-
 # Docker
 
 export BUILDKIT_PROGRESS=plain
+
+
+# QT
+
+export QT_QPA_PLATFORM=xcb
