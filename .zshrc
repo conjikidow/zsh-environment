@@ -143,17 +143,16 @@ alias make='make -j$[$(grep cpu.cores /proc/cpuinfo | sort -u | sed "s/[^0-9]//g
 
 # Python
 
-source "$HOME/.rye/env"
+echo 'eval "$(uv generate-shell-completion zsh)"'
 
 export PYTHONSTARTUP=${ENVDIR}/python/pythonrc.py
 alias python='python3'
 alias -s py=python3                                                                                                                 # Associates the .py file extension with the 'python3' command
 
 
-# Go
+# Rust
 
-export GOPATH="${HOME}/.go"
-export PATH="${PATH}:${GOROOT}/bin:${GOPATH}/bin"
+source "$HOME/.cargo/env"
 
 
 # LaTeX
